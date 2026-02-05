@@ -1,0 +1,29 @@
+{
+  "name": "nithub_project01",
+  "version": "1.0.0",
+  "description": "School Project",
+  "license": "ISC",
+  "author": "Abdulwaliyy Bello",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "up": "npx sequelize-cli db:migrate",
+    "down": "npx sequelize-cli db:migrate:undo"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "joi": "^18.0.2",
+    "jsonwebtoken": "^9.0.3",
+    "nodemon": "^3.1.11",
+    "pg": "^8.16.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.5"
+  }
+}
