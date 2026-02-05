@@ -21,7 +21,7 @@ import { Sequelize } from "sequelize";
 //     }
 // );
 
-const isProduction = config.nodeEnv === 'production';
+const isProduction = process.env.nodeEnv === 'production';
 export  const sequelize = new Sequelize(process.env.DATABASE_URL, {
     logging: false,
     dialect: 'postgres',
