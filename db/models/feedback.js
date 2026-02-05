@@ -3,7 +3,7 @@ import sequelize from "../../config/sequelize.js";
 
 export class feedback extends Model {}
 
-movies.init(
+feedback.init(
     {
       id: {
         allowNull: false,
