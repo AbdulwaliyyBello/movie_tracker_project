@@ -8,6 +8,7 @@ export const signupCont = async (req, res) =>{
     const transaction = await sequelize.transaction()
 
     try {
+        console.log(req.body)
         const {error, value} = signupSchema.validate(req.body, {abortEarly: false})
         console.log(value, "is the request body");
         if(error) return res.status(400).json({Error: error.message})
