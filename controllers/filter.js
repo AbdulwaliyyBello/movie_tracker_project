@@ -3,10 +3,10 @@ import { watched } from "../db/models/watched";
 export const filter = async (req, res) =>{
     try {
         const id = req.identity.id;
-        if(!id) return res.staus(403).json({error: "Unauthorised request"})
+        if(!id) return res.status(403).json({error: "Unauthorised request"})
         
-        const filterBy = req.body;
-        const criteria = req.body
+        const filterBy = req.body.filterBypo;
+        const criteria = req.body.criteria
         let result;
 
         switch (filterBy) {
@@ -67,6 +67,6 @@ export const filter = async (req, res) =>{
         return res.status(200).json({message: "watched list filtered succesfully", result})
     } catch (error) {
         console.error(error)
-        return req.sstats(500).json({Error: 'Internal server Error'})
+        return res.status(500).json({Error: 'Internal server Error'})
     }
 }

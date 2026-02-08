@@ -9,7 +9,7 @@ export const signupCont = async (req, res) =>{
 
     try {
         const {error, value} = signupSchema.validate(req.body, {abortEarly: false})
-
+        console.log(value, "is the request body");
         if(error) return res.status(400).json({Error: error.message})
         
         const { firstName, lastName, email, password} = value;

@@ -13,11 +13,11 @@ export const addFeedback = async (req, res) => {
             where: {userId: req.identity.id, imdbID}
         });
 
-        if(has_watched.length < 1) return res.status(404).json({message: "You have not watched this movie"})
+        if(!has_watched) return res.status(404).json({message: "You have not watched this movie"})
         
         const [entry, created] = await feedback.upsert({
             userId: req.identity.id,
-            movieId,
+            imdbID: movieId,
             rating,
             review
         });
@@ -29,7 +29,7 @@ export const addFeedback = async (req, res) => {
 
     } catch (error) {
         console.error(error)
-        return res.atus(500).json({error: "Internal Server Error"})
+        return res.status(500).json({error: "Internal Server Error"})
     }
 }
 
