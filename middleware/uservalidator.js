@@ -4,6 +4,8 @@ import { User } from "../db/models/user.js";
 
 export const verifyUser = async (req, res, next) =>{
     try {
+        console.log(req)
+        console.log(req.authorization)
         const jwtHeader = req.authorization;
         if(!jwtHeader)  return res.status(401).json({Error: 'Missing JWT. Please Log in'})
         
