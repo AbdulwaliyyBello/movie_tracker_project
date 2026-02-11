@@ -17,7 +17,7 @@ module.exports = {
         },
         allowNull: false
       },
-      movieId: {
+      imdbID: {
         type: Sequelize.STRING,
         allowNull: false
       },

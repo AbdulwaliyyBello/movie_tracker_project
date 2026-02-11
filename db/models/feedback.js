@@ -20,7 +20,7 @@ feedback.init(
         }
       },
       rating: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         validate: {
             min: 1,
             max: 5
@@ -31,7 +31,7 @@ feedback.init(
         type: DataTypes.STRING,
         allowNull: false
       },
-      imbdID: {
+      imdbID: {
         type: DataTypes.STRING,
         references: {
           model: "movies",

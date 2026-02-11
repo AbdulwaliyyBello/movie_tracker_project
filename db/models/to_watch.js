@@ -19,7 +19,7 @@ To_watch.init(
         },
         allowNull: false
       },
-      movieId: {
+      imdbID: {
         type: DataTypes.STRING,
         allowNull: false
       },

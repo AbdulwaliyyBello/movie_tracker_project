@@ -21,7 +21,7 @@ module.exports = {
         }
       },
       rating: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
         validate: {
             min: 1,
             max: 5
@@ -32,7 +32,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      imbdID: {
+      imdbID: {
         type: Sequelize.STRING,
         references: {
           model: "movies",
