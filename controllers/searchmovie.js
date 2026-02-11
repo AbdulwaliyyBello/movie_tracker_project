@@ -15,9 +15,9 @@ export const searchMovie = async (req, res) =>{
         if(searchType === 'one'){
             const response = await movies.findOne({
                 where: {
-                    ...(year && { year }),
-                    ...(type && { type }),
-                    ...(plot && { plot }),
+                    ...(year && { Year: year }),
+                    ...(type && { Type: type }),
+                    ...(plot && { Plot: plot }),
                     [Op.or]: [
                     title ? { Title: title } : null,
                     IMDB ? { imdbID: IMDB } : null,
