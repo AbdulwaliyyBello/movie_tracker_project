@@ -5,7 +5,7 @@ import { router } from './routes/movies.js';
 import {router as auth} from './routes/user_auth.js'
 const PORT  = process.env.PORT || 4500;
 const app = express()
-
+app.use(express.json())
 app.use("/movies", router)
 app.use("/authenticate", auth)
 app.listen(config.port, async ()=>{
