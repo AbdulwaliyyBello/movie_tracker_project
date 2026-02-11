@@ -4,14 +4,12 @@ import { User } from "../db/models/user.js";
 
 export const verifyUser = async (req, res, next) =>{
     try {
-        console.log(req)
-        console.log(req.authorization)
-        const jwtHeader = req.authorization;
-        if(!jwtHeader)  return res.status(401).json({Error: 'Missing JWT. Please Log in'})
+        const jwtHeader = req.headers.authorization;
+        if(!jwtHeader)  return res.status(401).json({Error: 'Please Log in'})
         
         const token = jwtHeader.split(" ")[1];
 
-        if(!jwt) return res.status(401).json({Error: "JWT is Missing"})
+        if(!jwt) return res.status(401).json({Error: "Please log in"})
 
         jwt.verify(token, config.jwtSecret, async (error, user)=>{
             if(error){
