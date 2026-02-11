@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import { config } from '../config/env.js';
 import { loginSchema } from '../schema/validator.js';
 import { User } from '../db/models/user.js';
+import { loginHash } from '../utils/bcrypt.js';
 export const loginCont = async (req, res) =>{
     try {
         const {error, value} = loginSchema.validate(req.body, {abortEarly: false});
@@ -18,7 +19,7 @@ export const loginCont = async (req, res) =>{
 
         if (user){
 
-            const isValid =  await verifyPassword(password, user.password)
+            const isValid =  await loginHash(password, user.password)
 
             if(isValid){
                 const token = jwt.sign(
