@@ -25,7 +25,7 @@ export const searchMovie = async (req, res) =>{
                 }
             });
 
-            if(response.length > 0) return response.status(200).json({message: "Movie found", data: response})
+            if(response) return response.status(200).json({message: "Movie found", data: response})
         }
 
         
