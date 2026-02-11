@@ -14,22 +14,25 @@ export const signupCont = async (req, res) =>{
         if(error) return res.status(400).json({Error: error.message})
         
         const { firstName, lastName, email, password} = value;
-    
+
+        const role = 'user';
+
         const exists = await User.findOne({
                 where: {email}
             })
+
         if(exists) return res.status(200).json({Error: `User with email: "${email}" already exists`})
         const encryptedPassword = await signUpHash(password)
 
         // console.log(encryptedPassword);
 
         await User.create({
-            firstName, lastName, email, password: encryptedPassword,
+            firstName, lastName, email, password: encryptedPassword, role
         }, {transaction})
 
         await transaction.commit()
         const token = jwt.sign({
-            email, role: 'user'
+            email, role
         }, config.jwtSecret, {expiresIn: '1h'})
 
     
