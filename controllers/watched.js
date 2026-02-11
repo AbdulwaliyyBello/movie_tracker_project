@@ -5,22 +5,22 @@ export const addToWatched = async (req, res) =>{
     const transaction = await sequelize.transaction()
     
     try {
-        const movieId = req.body.movieId;
+        const imdbID = req.body.imdbID;
 
         if(!req.identity.id || req.identity.role !== 'user') return res.status(403).json({Error: 'Unsauthorized request'});
 
         await To_watch.destroy({
-            where: {userId: req.identity.id, movieId}
+            where: {userId: req.identity.id, imdbID}
         }, {transaction});
 
         await watched.create({
             userId: req.identity.id,
-            movieId
+            imdbID
         }, {transaction})
 
         await transaction.commit()
 
-        return response.status(200).json({message: `Movie ${movieId} has been added to your watched list.`})
+        return response.status(200).json({message: `Movie ${imdbID} has been added to your watched list.`})
 
     } catch (error) {
 

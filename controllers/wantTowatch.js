@@ -1,15 +1,15 @@
 import { To_watch } from "../db/models/to_watch.js";
 export const wantToWatch = async (req, res) =>{
     try {
-        const {movieId} = req.body;
+        const {imdbID} = req.body;
 
         if(!req.identity.id) return res.status(403).json({Error: 'Unauthorized request'});
 
         await To_watch.create({
             userId: req.identity.id,
-            movieId
+            imdbID
         })
-        return res.status(200).json({message: `Movie ${movieId} has been added to your Want To Watch`})
+        return res.status(200).json({message: `Movie ${imdbID} has been added to your Want To Watch`})
     } catch (error) {
         console.log(error)
         return res.status(500).json({Error: 'Internal Server Error'})
