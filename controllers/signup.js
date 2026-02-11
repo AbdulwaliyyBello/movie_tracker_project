@@ -8,7 +8,7 @@ export const signupCont = async (req, res) =>{
     const transaction = await sequelize.transaction()
 
     try {
-        console.log(req.body)
+        console.log(req)
         const {error, value} = signupSchema.validate(req.body, {abortEarly: false})
         console.log(value, "is the request body");
         if(error) return res.status(400).json({Error: error.message})
@@ -27,11 +27,12 @@ export const signupCont = async (req, res) =>{
             firstName, lastName, email, password: encryptedPassword,
         }, {transaction})
 
+        await transaction.commit()
         const token = jwt.sign({
             email, role: 'user'
         }, config.jwtSecret, {expiresIn: '1h'})
 
-        await transaction.commit();
+    
 
         return res.status(200).json({message: "Succesfully added new user", value, token})
     } catch (error) {
