@@ -5,7 +5,8 @@ import { Op } from "sequelize";
 export const searchMovie = async (req, res) =>{
     try {
         let url = `http://www.omdbapi.com/?apiKey=${config.apiKeyOMDB}`;
-        const {error, value} = searchSchema.validate(req.body, {abortEarly: false})
+        
+        const {error, value} = searchSchema.validate(req.query, {abortEarly: false})
         
         if(error) return res.status(400).json({Error: error.message})
 

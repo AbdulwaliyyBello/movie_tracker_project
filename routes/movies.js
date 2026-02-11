@@ -6,7 +6,8 @@ import { addToWatched } from '../controllers/watched.js';
 import { getDashboardStats } from '../controllers/dashboard.js';
 export const router = express.Router()
 
-router.get("/getShows/:title/:id/:year/:type", verifyUser, searchMovie)
+router.get("/getShows", verifyUser, searchMovie)
+
 router.post("/addToWaitlist", verifyUser, wantToWatch)
 router.post("/addTowatchedlist", verifyUser, addToWatched)
 router.get("/getAllWatched", verifyUser, )
