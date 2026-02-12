@@ -8,6 +8,12 @@ export const addFeedback = async (req, res) => {
             return res.status(403).json({ Error: "Unauthorised Request" });
         }
         console.log(Object.keys(feedback.getAttributes()));
+        const tableInfo = await sequelize
+        .getQueryInterface()
+        .describeTable("feedbacks");
+
+        console.log("this is the actual table info", tableInfo);
+
         const { review, rating, imdbID } = req.body;
 
         const numericRating = Number(rating);

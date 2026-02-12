@@ -5,8 +5,8 @@ export const filter = async (req, res) =>{
         const id = req.identity.id;
         if(!id) return res.status(403).json({error: "Unauthorised request"})
         
-        const filterBy = req.body.filterBypo;
-        const criteria = req.body.criteria
+        const filterBy = req.query.filterBy;
+        const criteria = req.query.criteria
         let result;
 
         switch (filterBy) {
