@@ -31,7 +31,7 @@ feedback.init(
         type: DataTypes.STRING,
         allowNull: false
       },
-      imbdID: {
+      imdbID: {
         type: DataTypes.STRING,
         references: {
           model: "movies",
