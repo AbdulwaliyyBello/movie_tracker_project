@@ -1,6 +1,6 @@
 import { feedback } from "../db/models/feedback.js";
 import { watched } from "../db/models/watched.js";
-
+import sequelize from "../config/sequelize.js";
 export const addFeedback = async (req, res) => {
     try {
 
