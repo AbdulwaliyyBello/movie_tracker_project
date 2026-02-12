@@ -17,7 +17,7 @@ export const addFeedback = async (req, res) => {
         }
 
         const hasWatched = await watched.findOne({
-            where: { userId: req.identity.id, imdbID }
+            where: { userId: req.identity.id, movieId: imdbID }
         });
 
         if (!hasWatched) {
@@ -28,7 +28,7 @@ export const addFeedback = async (req, res) => {
 
         const [entry, created] = await feedback.upsert({
             userId: req.identity.id,
-            imdbID,
+            imbdID: imdbID,
             rating: numericRating,
             review
         });

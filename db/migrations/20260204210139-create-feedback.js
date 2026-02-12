@@ -32,7 +32,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      imdbID: {
+      imbdID: {
         type: Sequelize.STRING,
         references: {
           model: "movies",
