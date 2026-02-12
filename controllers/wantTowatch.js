@@ -5,9 +5,15 @@ export const wantToWatch = async (req, res) =>{
 
         if(!req.identity.id) return res.status(403).json({Error: 'Unauthorized request'});
 
+        const alreadyAdded = await To_watch.findOne({
+            where: {userId: req.identity.id, movieId: imdbID}
+        })
+
+        if(alreadyAdded) return res.status(200).json({message: "Movie already exists in your waitlist"})
+        
         await To_watch.create({
             userId: req.identity.id,
-            movieID: imdbID
+            movieId: imdbID
         })
         return res.status(200).json({message: `Movie ${imdbID} has been added to your Want To Watch`})
     } catch (error) {
@@ -23,7 +29,7 @@ export const getAllWaitlist = async (req, res) =>{
         const result = await To_watch.findAll({
             where: {userId: req.identity.id}
         })
-        if(result.length < 1) return res.status(204).json({message: "Empty waitlist"})
+        if(!result) return res.status(204).json({message: "Empty waitlist"})
 
         return res.staus(200).json({message: "Success", result})
 
