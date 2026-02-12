@@ -7,7 +7,7 @@ export const addFeedback = async (req, res) => {
         if (!req.identity?.id) {
             return res.status(403).json({ Error: "Unauthorised Request" });
         }
-
+        console.log(Object.keys(feedback.getAttributes()));
         const { review, rating, imdbID } = req.body;
 
         const numericRating = Number(rating);
