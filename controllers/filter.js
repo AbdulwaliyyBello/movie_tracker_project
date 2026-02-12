@@ -1,5 +1,5 @@
 import { watched } from "../db/models/watched.js";
-
+import { movies } from "../db/models/movies.js";
 export const filter = async (req, res) =>{
     try {
         const id = req.identity.id;
