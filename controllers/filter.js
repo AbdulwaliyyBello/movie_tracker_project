@@ -19,7 +19,7 @@ export const filter = async (req, res) =>{
                         {
                             model: movies,
                             where: {
-                                genre: criteria
+                                Genre: criteria
                             }
                         }
                     ]
