@@ -4,6 +4,7 @@ import { initDB } from './db/models/index.js';
 import { router } from './routes/movies.js';
 import {router as auth} from './routes/user_auth.js'
 import sequelize from './config/sequelize.js';
+import "./controllers/relations.js"
 const PORT  = process.env.PORT || 4500;
 
 sequelize.sync()

@@ -1,16 +1,7 @@
 import { watched } from "../db/models/watched.js";
 import { movies } from "../db/models/movies.js";
 
-watched.belongsTo(movies, {
-    foreignKey: "movieId",   
-    targetKey: "imdbID"      
-});
 
-
-movies.hasMany(watched, {
-    foreignKey: "movieId",   
-    sourceKey: "imdbID"      
-});
 export const filter = async (req, res) =>{
     try {
         const id = req.identity.id;
