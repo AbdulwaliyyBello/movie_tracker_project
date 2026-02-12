@@ -3,35 +3,51 @@ import { watched } from "../db/models/watched.js";
 
 export const addFeedback = async (req, res) => {
     try {
-        if(!req.identity.id) return res.status(403).json({Error: "Unauthorised Request"})
 
-        const {review, rating, imdbID} = req.body;
+        if (!req.identity?.id) {
+            return res.status(403).json({ Error: "Unauthorised Request" });
+        }
 
-        if (5 < parseInt(rating) || parseInt(rating) < 1) return res.status(400),json({Error: 'Invalid input'})
+        const { review, rating, imdbID } = req.body;
 
-        const has_watched = await watched.findOne({
-            where: {userId: req.identity.id, imdbID}
+        const numericRating = Number(rating);
+
+        if (!numericRating || numericRating < 1 || numericRating > 5) {
+            return res.status(400).json({ Error: 'Rating must be between 1 and 5' });
+        }
+
+        const hasWatched = await watched.findOne({
+            where: { userId: req.identity.id, imdbID }
         });
 
-        if(!has_watched) return res.status(404).json({message: "You have not watched this movie"})
-        
+        if (!hasWatched) {
+            return res.status(404).json({
+                message: "You have not watched this movie"
+            });
+        }
+
         const [entry, created] = await feedback.upsert({
             userId: req.identity.id,
-            imdbID: movieId,
-            rating,
+            imdbID,
+            rating: numericRating,
             review
         });
 
         return res.status(200).json({
-            message: created ? "feedback added" : "feedback updated",
+            message: created ? "Feedback added" : "Feedback updated",
             entry
         });
 
     } catch (error) {
-        console.error(error)
-        return res.status(500).json({error: "Internal Server Error"})
+
+        console.error(error);
+
+        return res.status(500).json({
+            error: "Internal Server Error"
+        });
     }
-}
+};
+
 
 export const getUserRatings = async (req, res) => {
 
@@ -41,7 +57,7 @@ export const getUserRatings = async (req, res) => {
             where: { userId: req.identity.id }
         });
 
-        if (!result.length) {
+        if (!result) {
             return res.status(204).json({ message: "No ratings yet" });
         }
 
