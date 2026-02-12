@@ -31,7 +31,7 @@ export const getAllWaitlist = async (req, res) =>{
         })
         if(!result) return res.status(204).json({message: "Empty waitlist"})
 
-        return res.staus(200).json({message: "Success", result})
+        return res.status(200).json({message: "Success", result})
 
     } catch (error) {
         console.log(error)
