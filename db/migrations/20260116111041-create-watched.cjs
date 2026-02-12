@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      imdbID: {
+      movieId: {
         type: Sequelize.STRING,
         allowNull: false
       },

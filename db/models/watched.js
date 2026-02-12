@@ -25,7 +25,7 @@ watched.init(
         },
         allowNull: false
       },
-    imdbID: {
+      movieId: {
         type: DataTypes.STRING,
         allowNull: false
       },

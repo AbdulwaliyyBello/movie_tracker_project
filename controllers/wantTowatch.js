@@ -7,7 +7,7 @@ export const wantToWatch = async (req, res) =>{
 
         await To_watch.create({
             userId: req.identity.id,
-            imdbID
+            movieID: imdbID
         })
         return res.status(200).json({message: `Movie ${imdbID} has been added to your Want To Watch`})
     } catch (error) {
