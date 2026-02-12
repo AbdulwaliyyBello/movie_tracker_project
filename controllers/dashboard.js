@@ -33,7 +33,7 @@ export const getDashboardStats = async (req, res) => {
         const watchedMovies = await watched.findAll({
 
             where: { userId },
-
+            distinct: true,
             include: [
                 {
                     model: movies,
