@@ -24,7 +24,12 @@ export const addToWatched = async (req, res) => {
             },
             transaction
         });
+        const hasWatched = await watched.findOne({
+            where: {userId: req.identity.id}
+        })
 
+        if(hasWatched) return res.status(201).json({message: "Movie already exists in your watched list"})
+            
         await watched.create({
             userId: req.identity.id,
             movieId: imdbID
