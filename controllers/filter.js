@@ -1,4 +1,4 @@
-import { watched } from "../db/models/watched";
+import { watched } from "../db/models/watched.js";
 
 export const filter = async (req, res) =>{
     try {
