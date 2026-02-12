@@ -59,7 +59,7 @@ export const watchedList = async (req, res) =>{
 
         if(result.length < 1) return res.status(204).json({message: "Empty watchList"})
 
-        return res.staus(200).json({message: "Success", result})
+        return res.status(200).json({message: "Success", result})
 
     } catch (error) {
         console.log(error)
