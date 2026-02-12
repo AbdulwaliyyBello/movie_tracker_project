@@ -18,7 +18,7 @@ export const getDashboardStats = async (req, res) => {
 
 
         const totalWatched = await watched.count({ where: { userId } });
-
+        const totalFeed = await feedback.count({where: {userId}})
         const totalWant = await To_watch.count({ where: { userId } });
 
         const avgRating = await feedback.findOne({
@@ -86,6 +86,7 @@ export const getDashboardStats = async (req, res) => {
             stats: {
                 totalWatched,
                 totalWant,
+                totalFeed,
                 averageRating: avgRating?.dataValues?.averageRating || 0
             },
 
