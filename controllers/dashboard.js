@@ -38,10 +38,10 @@ export const getDashboardStats = async (req, res) => {
                 {
                     model: movies,
                     attributes: [
-                        "title",
-                        "poster",
-                        "genre",
-                        "year",
+                        "Title",
+                        "Poster",
+                        "Genre",
+                        "Year",
                         "imdbID"
                     ]
                 },
@@ -65,10 +65,10 @@ export const getDashboardStats = async (req, res) => {
                 {
                     model: movies,
                     attributes: [
-                        "title",
-                        "poster",
-                        "genre",
-                        "year",
+                        "Title",
+                        "Poster",
+                        "Genre",
+                        "Year",
                         "imdbID"
                     ]
                 }
